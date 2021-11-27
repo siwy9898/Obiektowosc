@@ -57,33 +57,152 @@ public class Samochod {
 		}
 		return najstarszy;
 	}
-	
+
 	// napisz metode ktora znajduje wszystkie auta marki bmw
-	
-	public static List <Samochod> najstarszeZMarki (List <Samochod> lista, String marka){
-		List <Samochod> listaSamochodow = new ArrayList<>();
-		
+
+	public static List<Samochod> najstarszeZMarki(List<Samochod> lista, String marka) {
+
 		if (lista == null) {
 			throw new IllegalArgumentException("lista nie moze byc nullem.");
 		}
-		
+
+		List<Samochod> listaSamochodow = new ArrayList<>();
+
 		for (Samochod s : lista) {
 			if (s.marka.equals(marka)) {
 				listaSamochodow.add(s);
 			}
-		}return listaSamochodow;
+		}
+		return listaSamochodow;
+
 	}
-	
+
 	// napisz metode ktora znajduje auto o najnizszym przebiegu
-	
-	// napisz metode ktora znajduje wszystkie auta o kolorze niebieskim starsze niz 15 lat
-	
-	// napisz metode ktora znajduje najdrozsze auto ale z aut z przebiegiem mniejszym nzi 30k
-	
+
+	public static Samochod znajdzAutoONajniszymPrzebiegu(List<Samochod> lista) {
+
+		if (lista == null) {
+			throw new IllegalArgumentException("lista nie moze byc nullem.");
+		}
+
+		Samochod najmniejZajechany = lista.get(0);
+
+		for (Samochod s : lista) {
+			if (s.przebieg < najmniejZajechany.przebieg) {
+				najmniejZajechany = s;
+			}
+
+		}
+		return najmniejZajechany;
+	}
+
+	// napisz metode ktora znajduje wszystkie auta o kolorze niebieskim starsze niz
+	// 15 lat
+
+	public static List<Samochod> znajdzAutoODanymKolorzeiWieku(List<Samochod> lista, String kolor, int wiek) {
+
+		if (lista == null) {
+			throw new IllegalArgumentException("lista nie moze byc nullem.");
+		}
+
+		List<Samochod> listaSamochodow = new ArrayList<>();
+
+		for (Samochod s : lista) {
+			if (s.kolor.equals(kolor) && s.obliczWiek() > wiek) {
+				listaSamochodow.add(s);
+
+			}
+		}
+		return listaSamochodow;
+
+	}
+
+	// napisz metode ktora znajduje najdrozsze auto ale z aut z przebiegiem
+	// mniejszym nzi 30k
+
+	public static Samochod najdrozszyWsrodAutZPrzebiegiem(List<Samochod> lista, int przebieg) {
+
+		if (lista == null) {
+			throw new IllegalArgumentException("lista nie moze byc nullem.");
+		}
+
+		List<Samochod> listaAutZPrzebiegiem = new ArrayList<>();
+
+		for (Samochod s : lista) {
+			if (s.przebieg < przebieg) {
+				listaAutZPrzebiegiem.add(s);
+			}
+
+		}
+
+		Samochod samochod = listaAutZPrzebiegiem.get(0);
+
+		for (Samochod s : listaAutZPrzebiegiem) {
+			if (s.cena > samochod.cena) {
+				samochod = s;
+			}
+
+		}
+		return samochod;
+	}
+
 	// znajdz najtansze auto marki bmw
-	
+
+	public static Samochod najtanszeZMarki(List<Samochod> lista, String marka) {
+
+		if (lista == null) {
+			throw new IllegalArgumentException("lista nie moze byc nullem.");
+		}
+
+		List<Samochod> listaAutZMarki = new ArrayList<>();
+
+		for (Samochod s : lista) {
+			if (s.marka.equals(marka)) {
+				listaAutZMarki.add(s);
+			}
+
+		}
+
+		Samochod samochod = listaAutZMarki.get(0);
+
+		for (Samochod s : listaAutZMarki) {
+			if (s.cena < samochod.cena) {
+				samochod = s;
+			}
+
+		}
+		return samochod;
+
+	}
+
 	// znajdz najdrozsze auto ktorego marka ma dlugosc wieksza niz 4
-	
+
+	public static Samochod najdrozszeMarkiIlesLiterek(List<Samochod> lista, int dlugosc) {
+
+		if (lista == null) {
+			throw new IllegalArgumentException("lista nie moze byc nullem.");
+		}
+
+		List<Samochod> listaAut = new ArrayList<>();
+
+		for (Samochod s : lista) {
+			if (s.marka.length() > dlugosc) {
+				listaAut.add(s);
+			}
+
+		}
+
+		Samochod samochod = listaAut.get(0);
+
+		for (Samochod s : listaAut) {
+			if (s.cena > samochod.cena) {
+				samochod = s;
+			}
+
+		}
+		return samochod;
+
+	}
 
 	public String getKolor() {
 		return kolor;
