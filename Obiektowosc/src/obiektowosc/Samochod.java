@@ -60,7 +60,7 @@ public class Samochod {
 
 	// napisz metode ktora znajduje wszystkie auta marki bmw
 
-	public static List<Samochod> najstarszeZMarki(List<Samochod> lista, String marka) {
+	public static List<Samochod> samochodyZMarki(List<Samochod> lista, String marka) {
 
 		if (lista == null) {
 			throw new IllegalArgumentException("lista nie moze byc nullem.");
@@ -69,7 +69,7 @@ public class Samochod {
 		List<Samochod> listaSamochodow = new ArrayList<>();
 
 		for (Samochod s : lista) {
-			if (s.marka.equals(marka)) {
+			if (s.getMarka().equals(marka)) {
 				listaSamochodow.add(s);
 			}
 		}
@@ -81,14 +81,14 @@ public class Samochod {
 
 	public static Samochod znajdzAutoONajniszymPrzebiegu(List<Samochod> lista) {
 
-		if (lista == null) {
+		if (lista == null || lista.isEmpty()) {
 			throw new IllegalArgumentException("lista nie moze byc nullem.");
 		}
 
 		Samochod najmniejZajechany = lista.get(0);
 
 		for (Samochod s : lista) {
-			if (s.przebieg < najmniejZajechany.przebieg) {
+			if (s.getPrzebieg() < najmniejZajechany.getPrzebieg()) {
 				najmniejZajechany = s;
 			}
 
@@ -108,7 +108,7 @@ public class Samochod {
 		List<Samochod> listaSamochodow = new ArrayList<>();
 
 		for (Samochod s : lista) {
-			if (s.kolor.equals(kolor) && s.obliczWiek() > wiek) {
+			if (s.getKolor().equals(kolor) && s.obliczWiek() > wiek) {
 				listaSamochodow.add(s);
 
 			}
@@ -120,7 +120,7 @@ public class Samochod {
 	// napisz metode ktora znajduje najdrozsze auto ale z aut z przebiegiem
 	// mniejszym nzi 30k
 
-	public static Samochod najdrozszyWsrodAutZPrzebiegiem(List<Samochod> lista, int przebieg) {
+	public static List<Samochod> autaZPrzebiegiem(List<Samochod> lista, int przebieg) {
 
 		if (lista == null) {
 			throw new IllegalArgumentException("lista nie moze byc nullem.");
@@ -132,16 +132,25 @@ public class Samochod {
 			if (s.przebieg < przebieg) {
 				listaAutZPrzebiegiem.add(s);
 			}
+		}
+		return listaAutZPrzebiegiem;
 
+	}
+
+	public static Samochod najdrozszyWsrodAutZPrzebiegiem(List<Samochod> lista, int przebieg) {
+
+		List<Samochod> autaZPrzebiegiem = new ArrayList<>(autaZPrzebiegiem(lista, przebieg));
+
+		if (autaZPrzebiegiem.isEmpty()) {
+			throw new IllegalArgumentException("lista nie moze byc pusta.");
 		}
 
-		Samochod samochod = listaAutZPrzebiegiem.get(0);
+		Samochod samochod = autaZPrzebiegiem.get(0);
 
-		for (Samochod s : listaAutZPrzebiegiem) {
-			if (s.cena > samochod.cena) {
+		for (Samochod s : autaZPrzebiegiem) {
+			if (s.getCena() > samochod.cena) {
 				samochod = s;
 			}
-
 		}
 		return samochod;
 	}

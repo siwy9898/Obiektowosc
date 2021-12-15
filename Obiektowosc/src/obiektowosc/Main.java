@@ -47,6 +47,21 @@ public class Main {
 		System.out.println(Samochod.najdrozszyWsrodAutZPrzebiegiem(Samochod.getEkstensja(), 10000));
 		System.out.println(Samochod.najtanszeZMarki(Samochod.getEkstensja(), "Fiat"));
 		System.out.println(Samochod.najdrozszeMarkiIlesLiterek(Samochod.getEkstensja(), 2));
+
+		List<Integer> lista = List.of(4, 1, 5, 2);// new ArrayList<>(Arrays.asList(5, 2, 0, 8, 8, 3, 6));
+
+		System.out.println(sortowanie(lista));
+
+		System.out.println(lista);
+
 	}
 
+	public static List<Integer> sortowanie(List<Integer> lista) {
+
+		List<Integer> kopia = new ArrayList<>(lista);
+
+		Collections.sort(kopia);
+
+		return kopia;
+	}
 }
