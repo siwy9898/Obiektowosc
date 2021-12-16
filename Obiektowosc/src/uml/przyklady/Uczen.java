@@ -2,41 +2,29 @@ package uml.przyklady;
 
 import java.util.*;
 
-public class Uczen {
+public class Uczen extends Osoba {
 
-	private String imie;
-	private String nazwisko;
-	private String plec;
-	private int rokUrodzenia;
 	private String oddzial;
 	private int numerWDzienniku;
 	private long pesel;
 
 	private static List<Uczen> ekstensja = new ArrayList<>();
+	private List<Ocena> oceny = new ArrayList<>();
+
+	// dla licznosci asocjacji 1
+	private Szkola szkola;
 
 	public Uczen(String imie, String nazwisko, String plec, int rokUrodzenia, String oddzial, int numerWDzienniku,
 			long pesel) {
-		this.imie = imie;
-		this.nazwisko = nazwisko;
-		this.plec = plec;
-		this.rokUrodzenia = rokUrodzenia;
+		super(imie, nazwisko, plec, rokUrodzenia);
 		this.oddzial = oddzial;
 		this.numerWDzienniku = numerWDzienniku;
 		this.pesel = pesel;
-		sprawdzPesel(pesel);
-		ekstensja.add(this);
-
 	}
 
-	public Uczen(String imie, String nazwisko, String plec, int rokUrodzenia, long pesel) {
-		this.imie = imie;
-		this.nazwisko = nazwisko;
-		this.plec = plec;
-		this.rokUrodzenia = rokUrodzenia;
-		this.pesel = pesel;
-		sprawdzPesel(pesel);
-		ekstensja.add(this);
-
+	@Override
+	public double obliczDochod() {
+		return 350;
 	}
 
 	public void sprawdzPesel(long pesel) {
@@ -48,30 +36,6 @@ public class Uczen {
 
 		}
 		this.pesel = pesel;
-	}
-
-	public String getImie() {
-		return imie;
-	}
-
-	public void setImie(String imie) {
-		this.imie = imie;
-	}
-
-	public String getNazwisko() {
-		return nazwisko;
-	}
-
-	public void setNazwisko(String nazwisko) {
-		this.nazwisko = nazwisko;
-	}
-
-	public int getRokUrodzenia() {
-		return rokUrodzenia;
-	}
-
-	public void setRokUrodzenia(int rokUrodzenia) {
-		this.rokUrodzenia = rokUrodzenia;
 	}
 
 	public String getOddzial() {
@@ -106,12 +70,16 @@ public class Uczen {
 		this.pesel = pesel;
 	}
 
-	public String getPlec() {
-		return plec;
+	public Szkola getSzkola() {
+		return szkola;
 	}
 
-	public void setPlec(String plec) {
-		this.plec = plec;
+	public void setSzkola(Szkola szkola) {
+		this.szkola = szkola;
+	}
+
+	public List<Ocena> getOceny() {
+		return oceny;
 	}
 
 }

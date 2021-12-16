@@ -14,6 +14,9 @@ public class Szkola {
 	private List<String> profile = new ArrayList<>();
 	private static List<Szkola> ekstensja = new ArrayList<>();
 
+	// dla licznosci * (asocjacja)
+	private List<Uczen> uczniowie = new ArrayList<>();
+
 	public Szkola(String nazwa, int rokWybudowania, int numer) {
 		this.nazwa = nazwa;
 		this.rokWybudowania = rokWybudowania;
@@ -29,6 +32,25 @@ public class Szkola {
 		setNumer(numer);
 
 		ekstensja.add(this);
+	}
+
+	// szkola X
+	// uczen y
+	
+	// szkolax.dodaj(uczen y)
+	public void dodajUcznia(Uczen uczen) {
+		//sprawdzeni eczy uczen nie jest juz w jakiejs szkole
+		if(uczen.getSzkola() != null) {
+			throw new IllegalArgumentException("Uczen ma juz szkole");
+		}
+		uczniowie.add(uczen);
+		// BARDZO WAZNE
+		// informacja zwrotna
+		uczen.setSzkola(this);
+	}
+
+	public void usunUcznia(Uczen uczen) {
+		uczniowie.remove(uczen);
 	}
 
 	public void dodajProfil(String profil) {
@@ -96,6 +118,10 @@ public class Szkola {
 
 	public static void setMinimalnaLiczbaUczniow(int minimalnaLiczbaUczniow) {
 		Szkola.minimalnaLiczbaUczniow = minimalnaLiczbaUczniow;
+	}
+
+	public List<Uczen> getUczniowie() {
+		return uczniowie;
 	}
 
 }
