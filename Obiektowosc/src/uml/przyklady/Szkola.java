@@ -13,6 +13,7 @@ public class Szkola {
 
 	private List<String> profile = new ArrayList<>();
 	private static List<Szkola> ekstensja = new ArrayList<>();
+	private List <Sala> sale = new ArrayList<>();
 
 	// dla licznosci * (asocjacja)
 	private List<Uczen> uczniowie = new ArrayList<>();
@@ -122,6 +123,22 @@ public class Szkola {
 
 	public List<Uczen> getUczniowie() {
 		return uczniowie;
+	}
+
+	public List<Sala> getSale() {
+		return sale;
+	}
+
+	public void setSale(List<Sala> sale) {
+		this.sale = sale;
+	}
+
+	public static void setEkstensja(List<Szkola> ekstensja) {
+		Szkola.ekstensja = ekstensja;
+	}
+
+	public void setUczniowie(List<Uczen> uczniowie) {
+		this.uczniowie = uczniowie;
 	}
 
 }

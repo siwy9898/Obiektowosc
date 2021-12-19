@@ -10,6 +10,7 @@ public class Uczen extends Osoba {
 
 	private static List<Uczen> ekstensja = new ArrayList<>();
 	private List<Ocena> oceny = new ArrayList<>();
+	private Klasa klasa;
 
 	// dla licznosci asocjacji 1
 	private Szkola szkola;
@@ -80,6 +81,14 @@ public class Uczen extends Osoba {
 
 	public List<Ocena> getOceny() {
 		return oceny;
+	}
+
+	public Klasa getKlasa() {
+		return klasa;
+	}
+
+	public void setKlasa(Klasa klasa) {
+		this.klasa = klasa;
 	}
 
 }

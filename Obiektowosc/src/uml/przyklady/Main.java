@@ -51,6 +51,8 @@ public class Main {
 		 *   2) napisz metode ktora zwroci liste klientow ktorzy kupili durexa 
 		 *   
 		 *   3) napisz metode ktora zwroci liste klientow ktorzy kupili durexy ale nie na swoj rozmiar :D 
+		 *   
+		 *   4) znajdz najdrozszy produkt
 		 */
 
 		/*
