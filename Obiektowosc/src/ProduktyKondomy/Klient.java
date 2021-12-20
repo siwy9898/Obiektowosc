@@ -74,6 +74,10 @@ public class Klient {
 
 	}
 
+//	 * Klient kupuje produkty. Klient ma imie nazwisko i rozmiar penisa. Pordukt ma
+//	 * nazwe, cene i jesli jest to kondom to wymiar. Klient moze miec wiele
+//	 * produktow, produkt moze miec jednego klienta.
+
 	public int ileWydal() {
 		int razem = 0;
 		List<Produkt> produkty = listaProduktow;
@@ -100,11 +104,11 @@ public class Klient {
 
 	// 2) napisz metode ktora zwroci liste klientow ktorzy kupili durexa
 
-	public Boolean czytoKupil(Produkt produkt) {
+	public Boolean czytoKupil(String nazwaProduktu) {
 		List<Produkt> lista = listaProduktow;
 
-		for (Produkt p : lista) {
-			if (lista.contains(produkt)) {
+		for (int i = 0; i < lista.size(); i++) {
+			if (lista.get(i).getNazwa().equals(nazwaProduktu)) {
 				return true;
 			}
 
@@ -112,37 +116,35 @@ public class Klient {
 		return false;
 	}
 
-	public static List<Klient> klienciZProduktem(List<Klient> lista, Produkt produkt) {
+	// * 2) napisz metode ktora zwroci liste klientow ktorzy kupili durexa
+
+	public static List<Klient> klienciZProduktem(List<Klient> lista, String nazwaProduktu) {
 		Klient posiadacz = lista.get(0);
 		List<Klient> listaNabywcow = new ArrayList<>();
+
 		for (Klient k : lista) {
-			if (posiadacz.getListaProduktow().contains(produkt)) {
-				listaNabywcow.add(posiadacz);
+			if (k.czytoKupil(nazwaProduktu)) {
+				listaNabywcow.add(k);
 			}
 
 		}
 		return listaNabywcow;
 	}
 
+// 3) napisz metode ktora zwroci liste klientow ktorzy kupili durexy ale nie na swoj rozmiar :D
+
+	public static List<Klient> czyDobryRozmiarGumy(List<Klient> lista) {
+		List<Klient> kliencizGuma = Klient.klienciZProduktem(lista, "durex");
+		
+		for (Klient k : kliencizGuma) {
+	
+			for (int i = 0 ; i<k.getListaProduktow().size(); i++) {
+				if (k.getListaProduktow().get(i).getRozmiar)
+			}
+		}
+	}
+
 }
-
-/*
- * Klient kupuje produkty. Klient ma imie nazwisko i rozmiar penisa. Pordukt ma
- * nazwe, cene i jesli jest to kondom to wymiar. Klient moze miec wiele
- * produktow, produkt moze miec jednego klienta.
- * 
- * 
- * 
- * 2) napisz metode ktora zwroci liste klientow ktorzy kupili durexa
- * 
- * 
- * 
- * 3) napisz metode ktora zwroci liste klientow ktorzy kupili durexy ale nie na
- * swoj rozmiar :D
- * 
- * 4) znajdz najdrozszy produkt
- */
-
 /*
  * Stwórz klasê Pracownik (imie,nazwisko, adres, pensja i Klient (imie,nazwisko,
  * ulubiony produkt). Klient kupuje produkty (nazwa, cena). Pracownik uzywa
