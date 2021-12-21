@@ -8,4 +8,12 @@ public class Kondom extends Produkt {
 		this.rozmiar = rozmiar;
 	}
 
+	public int getRozmiar() {
+		return rozmiar;
+	}
+
+	public void setRozmiar(int rozmiar) {
+		this.rozmiar = rozmiar;
+	}
+
 }

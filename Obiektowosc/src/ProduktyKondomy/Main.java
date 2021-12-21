@@ -14,11 +14,11 @@ public class Main {
 		Klient k4 = new Klient("Jerzy", "Pies", 14);
 
 		Produkt p1 = new Kondom("durex", 30, 11);
-		Produkt p2 = new Produkt("chleb", 5);
-		Produkt p3 = new Produkt("rower", 20000);
-		Produkt p4 = new Produkt("komputer", 3000);
+		Produkt p2 = new Kondom("chleb", 5, 10);
+		Produkt p3 = new Kondom("rower", 20000, 10);
+		Produkt p4 = new Kondom("komputer", 3000, 10);
 		Produkt p5 = new Kondom("durex", 30, 11);
-		Produkt p6 = new Kondom("durex", 30, 11);
+		Produkt p6 = new Kondom("durex", 30, 14);
 		Produkt p7 = new Kondom("durex", 20, 11);
 
 		k1.kupProdukt(p1);
@@ -26,9 +26,12 @@ public class Main {
 		k2.kupProdukt(p4);
 		k4.kupProdukt(p6);
 		k3.kupProdukt(p7);
-		System.out.println(k4.czytoKupil("durex"));
+		// System.out.println(k4.czytoKupil("durex"));
 		System.out.println(Produkt.najdrozszy(Produkt.getEkstensja()));
-		System.out.println(Klient.klienciZProduktem(Klient.getEkstensja(), "durex"));
+		System.out.println(Klient.klienciZKondomem(Klient.getEkstensja()));
+		System.out.println(Klient.zlyRozmiarGumy(Klient.getEkstensja()));
+		
+		// System.out.println(Klient.klienciZProduktem(Klient.getEkstensja(), "durex"));
 		// System.out.println(p1.getKlient() + " " + p2.getKlient());
 		System.out.println(k1.getListaProduktow());
 		System.out.println(k2.getListaProduktow());

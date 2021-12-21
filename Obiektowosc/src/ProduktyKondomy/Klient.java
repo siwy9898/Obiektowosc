@@ -21,6 +21,97 @@ public class Klient {
 
 	}
 
+	public void kupProdukt(Produkt produkt) {
+		if (produkt.getKlient() != null) {
+			throw new IllegalArgumentException("Produkt nabyty");
+		}
+		listaProduktow.add(produkt);
+		produkt.setKlient(this);
+
+	}
+
+//	 * Klient kupuje produkty. Klient ma imie nazwisko i rozmiar penisa. Pordukt ma
+//	 * nazwe, cene i jesli jest to kondom to wymiar. Klient moze miec wiele
+//	 * produktow, produkt moze miec jednego klienta.
+
+	public int ileWydal() {
+		int razem = 0;
+		List<Produkt> produkty = listaProduktow;
+		for (Produkt p : produkty) {
+			razem += p.getCena();
+		}
+		return razem;
+	}
+
+//	 * 1) Napisz mrtode ktota znajduje klienta ktory wydal najwiecej.
+
+	public static Klient ktoWydalNajwiecej(List<Klient> lista) {
+
+		// obslugujemy nulle i lista pusta
+		Klient najwiecej = lista.get(0);
+
+		for (Klient k : lista) {
+			if (k.ileWydal() > najwiecej.ileWydal()) {
+				najwiecej = k;
+			}
+
+		}
+		return najwiecej;
+
+	}
+
+	// 2) napisz metode ktora zwroci liste klientow ktorzy kupili durexa
+
+	public boolean czyKupilKondoma() {
+
+		for (Produkt p : listaProduktow) {
+			if (p instanceof Kondom) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	// * 2) napisz metode ktora zwroci liste klientow ktorzy kupili durexa
+
+	public static List<Klient> klienciZKondomem(List<Klient> lista) {
+
+		if (lista.isEmpty() || lista == null) {
+			throw new IllegalArgumentException("Lista jest pusta lub null");
+		}
+
+		List<Klient> listaNabywcow = new ArrayList<>();
+
+		for (Klient k : lista) {
+			if (k.czyKupilKondoma()) {
+				listaNabywcow.add(k);
+			}
+
+		}
+		return listaNabywcow;
+	}
+
+	// 3) napisz metode ktora zwroci liste klientow ktorzy kupili durexy ale nie na
+	// swoj rozmiar :D
+
+	public static List<Klient> zlyRozmiarGumy(List<Klient> lista) {
+
+		List<Klient> kliencizGuma = new ArrayList<>(klienciZKondomem(lista)); // <- cos tu nie chce banglac, jak zrobilem taka kretynska powtorke to dziala, wytlumacz grzegorzu
+		List<Klient> klienciZeZlaGuma = new ArrayList<>(kliencizGuma);	
+		for (Klient k : kliencizGuma) {
+			for (Produkt p : k.getListaProduktow()) {
+				if (p instanceof Kondom) {
+					if (((Kondom) p).getRozmiar() == k.getRozmiarPenisa()) {
+						klienciZeZlaGuma.remove(k);		
+					}
+				}
+			}
+
+		}
+		return klienciZeZlaGuma;
+	}
+
 	public String getImie() {
 		return imie;
 	}
@@ -63,85 +154,6 @@ public class Klient {
 
 	public String toString() {
 		return imie + " " + nazwisko;
-	}
-
-	public void kupProdukt(Produkt produkt) {
-		if (produkt.getKlient() != null) {
-			throw new IllegalArgumentException("Produkt nabyty");
-		}
-		listaProduktow.add(produkt);
-		produkt.setKlient(this);
-
-	}
-
-//	 * Klient kupuje produkty. Klient ma imie nazwisko i rozmiar penisa. Pordukt ma
-//	 * nazwe, cene i jesli jest to kondom to wymiar. Klient moze miec wiele
-//	 * produktow, produkt moze miec jednego klienta.
-
-	public int ileWydal() {
-		int razem = 0;
-		List<Produkt> produkty = listaProduktow;
-		for (Produkt p : produkty) {
-			razem += p.getCena();
-		}
-		return razem;
-	}
-
-//	 * 1) Napisz mrtode ktota znajduje klienta ktory wydal najwiecej.
-
-	public static Klient ktoWydalNajwiecej(List<Klient> lista) {
-		Klient najwiecej = lista.get(0);
-
-		for (Klient k : lista) {
-			if (k.ileWydal() > najwiecej.ileWydal()) {
-				najwiecej = k;
-			}
-
-		}
-		return najwiecej;
-
-	}
-
-	// 2) napisz metode ktora zwroci liste klientow ktorzy kupili durexa
-
-	public Boolean czytoKupil(String nazwaProduktu) {
-		List<Produkt> lista = listaProduktow;
-
-		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getNazwa().equals(nazwaProduktu)) {
-				return true;
-			}
-
-		}
-		return false;
-	}
-
-	// * 2) napisz metode ktora zwroci liste klientow ktorzy kupili durexa
-
-	public static List<Klient> klienciZProduktem(List<Klient> lista, String nazwaProduktu) {
-		Klient posiadacz = lista.get(0);
-		List<Klient> listaNabywcow = new ArrayList<>();
-
-		for (Klient k : lista) {
-			if (k.czytoKupil(nazwaProduktu)) {
-				listaNabywcow.add(k);
-			}
-
-		}
-		return listaNabywcow;
-	}
-
-// 3) napisz metode ktora zwroci liste klientow ktorzy kupili durexy ale nie na swoj rozmiar :D
-
-	public static List<Klient> czyDobryRozmiarGumy(List<Klient> lista) {
-		List<Klient> kliencizGuma = Klient.klienciZProduktem(lista, "durex");
-		
-		for (Klient k : kliencizGuma) {
-	
-			for (int i = 0 ; i<k.getListaProduktow().size(); i++) {
-				if (k.getListaProduktow().get(i).getRozmiar)
-			}
-		}
 	}
 
 }
